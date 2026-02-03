@@ -1,0 +1,87 @@
+<?php declare( strict_types = 1 ); ?>
+<?php
+/**
+ * Custom functions that act independently of the theme templates
+ *
+ * Eventually, some of the functionality here could be replaced by core features
+ *
+ * @package Canard
+ */
+
+/**
+ * Adds custom classes to the array of body classes.
+ *
+ * @param array $classes Classes for the body element.
+ * @return array
+ */
+function canard_body_classes( $classes ) {
+	// Adds a class of group-blog to blogs with more than 1 published author.
+	if ( is_multi_author() ) {
+		$classes[] = 'group-blog';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'canard_body_classes' );
+
+if ( ! function_exists( 'canard_excerpt_more' ) && ! is_admin() ) :
+/**
+ * Replaces "[...]" (appended to automatically generated excerpts) with ...
+ *
+ * @since Canard 1.0.3
+ */
+function canard_excerpt_more( $more ) {
+	return ' &hellip;';
+}
+add_filter( 'excerpt_more', 'canard_excerpt_more' );
+endif;
+
+if ( ! function_exists( 'canard_continue_reading' ) && ! is_admin() ) :
+/**
+ * Adds a "Continue reading" link to all instances of the_excerpt.
+ *
+ * @since Canard 1.0.4
+ *
+ * @param  string $the_excerpt The post excerpt.
+ * @return string The excerpt with a 'Continue reading' link appended.
+ */
+function canard_continue_reading( $the_excerpt ) {
+	$post_id = (int) get_the_ID();
+
+	$the_excerpt = sprintf( '%1$s <a href="%2$s" class="more-link">%3$s</a>',
+		$the_excerpt,
+		esc_url( get_permalink( $post_id ) ),
+		/* translators: %s: Name of current post */
+		sprintf( __( 'Continue reading %s', 'canard' ), '<span class="screen-reader-text">' . get_the_title( $post_id ) . '</span>' )
+	);
+	return $the_excerpt;
+}
+add_filter( 'the_excerpt', 'canard_continue_reading', 9 );
+endif;
+
+/**
+ * Custom length of the excerpt.
+ *
+ * @param  int $length The default excerpt length in words.
+ * @return int
+ */
+function canard_excerpt_length( $length ) {
+	return 65;
+}
+add_filter( 'excerpt_length', 'canard_excerpt_length', 999 );
+
+/**
+ * Returns the URL from the post.
+ *
+ * Uses get_url_in_content() to retrieve the first URL found in the post
+ * content. Falls back to the post permalink if no URL is found or the
+ * post format is not 'link'.
+ *
+ * @return string URL
+ */
+function canard_get_link_url() {
+	$content = get_the_content();
+	$has_url = get_url_in_content( $content );
+
+	return ( $has_url !== false && has_post_format( 'link' ) ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
+}

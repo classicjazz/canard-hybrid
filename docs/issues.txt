@@ -1,0 +1,22 @@
+CANARD MODERNIZATION - KNOWN ISSUES & VERIFICATION LOG
+Version: 1.4 (Integration Phase)
+
+1. JAVASCRIPT: REDUNDANT INIT LOGIC
+Issue: Some scripts (like navigation.js) contain their own DOMContentLoaded listeners while also being enqueued with the 'true' footer flag in functions.php.
+Impact: Negligible performance hit, but causes double-initialization checks.
+Status: Monitoring; may consolidate into a single init.js if needed.
+
+2. CSS: SPACING VARIABLE FALLBACKS
+Issue: posts.js relies on --wp--preset--spacing--lg and --md. If theme.json is edited and these slugs are renamed, the layout defaults to hardcoded 60/30px.
+Impact: Potential minor visual inconsistency if design tokens are changed without updating JS.
+Status: Documented in posts.js comments.
+
+3. PERFORMANCE: JQUERY DEPENDENCIES
+Issue: While core theme scripts are vanilla, third-party plugins (like Jetpack or Contact Form 7) may re-enqueue jQuery.
+Impact: Prevents a 100% "jQuery-free" environment in some configurations.
+Status: functions.php currently only deregisters jQuery for non-logged-in users to avoid breaking the Admin Bar.
+
+4. PHP 8.4: TYPE COERCION IN ARCHIVES
+Issue: Archive title logic in legacy inc/template-tags.php may still pass mixed types to return strings.
+Impact: Potential TypeError under strict_types.
+Status: High priority for the next refactor phase.

@@ -1,0 +1,317 @@
+/*
+ * Theme Name: Canard
+ * Version:    1.3
+ * Description: Used to style Gutenberg Blocks.
+ *
+ * All colours, fonts and spacing values are resolved through the
+ * design-token custom properties declared in style.css (:root)
+ * and the WordPress preset variables generated from theme.json.
+ * Do NOT introduce hard-coded hex colours or pixel spacing here;
+ * change the single source of truth in theme.json / style.css instead.
+ */
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 General Block Styles
+2.0 Blocks - Common Blocks
+3.0 Blocks - Formatting
+4.0 Blocks - Layout Elements
+5.0 Blocks - Widgets
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+1.0 General Block Styles
+--------------------------------------------------------------*/
+
+/* Captions */
+
+[class^="wp-block-"] figcaption {
+	color: var(--canard-gray-500);
+	font-family: var(--canard-font-sans);
+	font-size: var(--wp--preset--font-size--base);
+	line-height: 1.25;
+	max-width: 100%;
+}
+
+/*--------------------------------------------------------------
+2.0 Blocks - Common Blocks
+--------------------------------------------------------------*/
+
+/* Paragraph */
+
+p.has-drop-cap:not(:focus)::first-letter {
+	font-size: 64px;
+}
+
+/* Images */
+
+.wp-block-cover,
+.wp-block-cover.alignleft,
+.wp-block-cover.alignright,
+.wp-block-cover.aligncenter {
+	display: flex;
+}
+
+/* Gallery */
+
+.wp-block-gallery {
+	margin-bottom: var(--canard-space-md);
+	margin-left: auto;
+}
+
+/* Quote */
+
+.wp-block-quote cite {
+	font-style: normal;
+}
+
+.wp-block-quote.is-large,
+.wp-block-quote.is-style-large,
+.wp-block-quote.is-large p,
+.wp-block-quote.is-style-large p {
+	font-size: 120%;
+}
+
+/* Audio */
+
+.wp-block-audio audio {
+	display: block;
+	width: 100%;
+}
+
+/* File */
+
+.wp-block-file a.wp-block-file__button {
+	background: var(--canard-primary);
+	border: 2px solid var(--canard-primary);
+	border-radius: 0;
+	color: #fff;
+	font-family: var(--canard-font-sans);
+	font-weight: bold;
+	padding: 5.5px 13px;
+	text-transform: uppercase;
+}
+
+.wp-block-file a.wp-block-file__button:hover,
+.wp-block-file a.wp-block-file__button:focus {
+	background: #fff;
+	color: var(--canard-primary);
+	outline: none;
+}
+
+/*--------------------------------------------------------------
+3.0 Blocks - Formatting Blocks
+--------------------------------------------------------------*/
+
+/* Verse */
+
+.wp-block-verse {
+	background: transparent;
+	border: 0;
+	color: inherit;
+	font-family: inherit;
+	line-height: inherit;
+	margin-bottom: var(--canard-space-md);
+	max-width: 100%;
+	overflow: auto;
+	padding: 0;
+}
+
+/* Code */
+
+.wp-block-code {
+	font-family: var(--canard-font-mono);
+}
+
+/* Pullquote */
+
+.wp-block-pullquote {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.wp-block-pullquote blockquote {
+	border-top: 4px solid currentColor;
+	border-bottom: 2px solid currentColor;
+	color: var(--canard-gray-700);
+	font-style: italic;
+	margin: var(--canard-space-sm) 0 var(--canard-space-md);
+	padding: var(--canard-space-sm) 0;
+	position: relative;
+}
+
+.wp-block-pullquote blockquote:before {
+	display: none;
+}
+
+.wp-block-pullquote p,
+.wp-block-pullquote.alignleft p,
+.wp-block-pullquote.alignright p {
+	font-size: var(--wp--preset--font-size--medium);
+}
+
+.wp-block-pullquote.alignleft cite,
+.wp-block-pullquote.alignright cite {
+	font-size: var(--wp--preset--font-size--base);
+}
+
+.wp-block-pullquote cite {
+	text-transform: none;
+	font-size: inherit;
+	font-weight: bold;
+}
+
+/* Table */
+
+.wp-block-table {
+	border-top: var(--canard-border);
+	margin: 0 0 var(--canard-space-md);
+	text-align: left;
+	width: 100%;
+}
+
+.wp-block-table thead {
+	background: var(--canard-gray-100);
+}
+
+.wp-block-table th {
+	border: 0;
+	border-bottom: var(--canard-border);
+	font-family: var(--canard-font-sans);
+	font-weight: bold;
+	padding: 5px;
+	text-transform: uppercase;
+}
+
+.wp-block-table td {
+	border: 0;
+	border-bottom: var(--canard-border);
+	padding: 5px;
+}
+
+/*--------------------------------------------------------------
+4.0 Blocks - Layout Elements
+--------------------------------------------------------------*/
+
+/* Buttons */
+
+.wp-block-button .wp-block-button__link {
+	border: 2px solid;
+	display: inline-block;
+	font-family: var(--canard-font-sans);
+	font-weight: bold;
+	padding: 5.5px 13px;
+	text-transform: uppercase;
+}
+
+.wp-block-button__link:not(.has-background) {
+	background: var(--canard-primary);
+	border-color: var(--canard-primary);
+}
+
+.wp-block-button__link:not(.has-text-color) {
+	color: #fff;
+}
+
+.wp-block-button .wp-block-button__link:active,
+.wp-block-button .wp-block-button__link:focus,
+.wp-block-button .wp-block-button__link:hover {
+	color: var(--canard-primary);
+	background: #fff;
+	border-color: var(--canard-primary);
+}
+
+.is-style-outline .wp-block-button__link {
+	background: transparent;
+	border-color: currentColor;
+}
+
+.is-style-outline .wp-block-button__link:not(.has-text-color) {
+	color: var(--canard-primary);
+}
+
+.is-style-outline .wp-block-button__link:not(.has-background):active,
+.is-style-outline .wp-block-button__link:not(.has-background):hover,
+.is-style-outline .wp-block-button__link:not(.has-background):focus,
+.is-style-outline .wp-block-button__link:not(.has-text-color):active,
+.is-style-outline .wp-block-button__link:not(.has-text-color):hover,
+.is-style-outline .wp-block-button__link:not(.has-text-color):focus {
+	border-color: currentColor;
+	color: currentColor;
+}
+
+/* Separator */
+
+hr.wp-block-separator {
+	border: 0;
+}
+
+.wp-block-separator {
+	background-color: var(--canard-gray-200);
+	border: 0;
+	margin-bottom: var(--canard-space-md);
+	max-width: 66%;
+}
+
+.wp-block-separator:not(.is-style-dots) {
+	height: 1px;
+}
+
+.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100px;
+}
+
+.wp-block-separator.is-style-wide {
+	max-width: 100%;
+}
+
+/*--------------------------------------------------------------
+5.0 Blocks - Widgets
+--------------------------------------------------------------*/
+
+/* General Widget styles */
+
+.wp-block-categories.aligncenter,
+.wp-block-categories.aligncenter ul,
+.wp-block-archives.aligncenter,
+.wp-block-latest-posts.aligncenter,
+.wp-block-latest-comments.aligncenter {
+	list-style-position: inside;
+	text-align: center;
+}
+
+/* Latest Comments */
+
+.editor-block-list__block .wp-block-latest-comments__comment-meta a {
+	box-shadow: none;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.wp-block-latest-comments .wp-block-latest-comments__comment {
+	border-top: var(--canard-border);
+	margin-bottom: 0;
+	padding: var(--canard-space-md) 0;
+}
+
+.wp-block-latest-comments__comment-excerpt p:last-child {
+	margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+6.0 Blocks - Colors
+--------------------------------------------------------------*/
+
+/*
+ * NOTE (v1.3): The legacy per-colour utility classes that lived here
+ * (e.g. .has-red-color, .has-dark-gray-background-color …) have been
+ * removed.  WordPress now generates these classes automatically from
+ * the palette defined in theme.json → settings.color.palette.
+ * Adding them here again would create a specificity conflict with the
+ * auto-generated rules and would diverge the moment the palette is
+ * updated in theme.json.
+ */
