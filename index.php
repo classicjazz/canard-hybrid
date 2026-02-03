@@ -1,5 +1,6 @@
-<?php declare( strict_types = 1 ); ?>
 <?php
+declare( strict_types = 1 );
+
 /**
  * The main template file.
  *
@@ -12,7 +13,7 @@
  * @package Canard
  */
 
-<?php get_header(); ?>
+get_header(); ?>
 
 	<?php
 		if ( is_home() ) {

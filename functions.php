@@ -70,6 +70,9 @@ if ( ! function_exists( 'canard_setup' ) ) :
 		// Add support for responsive embeds.
 		add_theme_support( 'responsive-embeds' );
 
+		// Add support for Custom Logo.
+		add_theme_support( 'custom-logo' );
+
 		/*
 		 * WordPress 6.7 block-era theme supports.
 		 * - appearance-tools: enables border, shadow, and spacing controls via theme.json.

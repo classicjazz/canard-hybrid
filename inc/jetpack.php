@@ -34,10 +34,6 @@ function canard_jetpack_setup(): void {
 	// Responsive Videos.
 	add_theme_support( 'jetpack-responsive-videos' );
 
-	// Site Logo.
-	add_image_size( 'canard-logo', 400, 90 );
-	add_theme_support( 'site-logo', array( 'size' => 'canard-logo' ) );
-
 	// Content Options – controls visibility of post-detail elements.
 	add_theme_support( 'jetpack-content-options', array(
 		'post-details'    => array(
@@ -95,18 +91,6 @@ function canard_remove_sharedaddy(): void {
 	remove_filter( 'the_excerpt', 'sharing_display', 19 );
 }
 add_action( 'loop_start', 'canard_remove_sharedaddy' );
-
-/**
- * Output the Jetpack Site Logo, or return silently when the function is
- * unavailable (Jetpack not active).
- */
-function canard_the_site_logo(): void {
-	if ( ! function_exists( 'jetpack_the_site_logo' ) ) {
-		return;
-	}
-
-	jetpack_the_site_logo();
-}
 
 /**
  * Determine whether the featured image should be shown on the current
